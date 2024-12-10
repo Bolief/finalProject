@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Badges";
+}
+
+<h1 class="mb-4">Badges</h1>
+
+@if (Model != null && Model.Any())
+{
+    <div class="list-group">
+        @foreach (var badge in Model)
+        {
+            <div class="list-group-item">
+                <h5 class="mb-1">
+                    <strong>@badge.Name</strong>
+                </h5>
+                <p class="mb-0">@badge.Description</p>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="alert alert-info" role="alert">
+        No badges earned yet. Participate in battles to earn badges!
+    </div>
+}
+

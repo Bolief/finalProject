@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-
+﻿
 namespace finalProject.Models
 {
     using Microsoft.EntityFrameworkCore;

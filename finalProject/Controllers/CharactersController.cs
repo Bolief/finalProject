@@ -36,7 +36,8 @@ namespace finalProject.Controllers
 
             if (team == null)
             {
-                return NotFound();
+                TempData["ErrorMessage"] = "Team not found.";
+                return RedirectToAction("Index", "Teams");
             }
 
             foreach (var updatedCharacter in updatedCharacters)
@@ -49,11 +50,18 @@ namespace finalProject.Controllers
                     existingCharacter.Speed = updatedCharacter.Speed;
                     existingCharacter.Health = updatedCharacter.Health;
                 }
+                else
+                {
+                    TempData["ErrorMessage"] = $"Invalid stats for character {updatedCharacter.Name}.";
+                    return RedirectToAction("Customize", new { teamId = teamId });
+                }
             }
 
             _context.SaveChanges();
+            TempData["SuccessMessage"] = "Character stats updated successfully!";
             return RedirectToAction("Index", "Teams");
         }
+
     }
 
 
