@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Battle";
+}
+
+<h1>Select Teams to Battle</h1>
+
+<form method="post" asp-action="Battle" asp-controller="Battle">
+    <div class="form-group">
+        <label for="team1">Select Team 1</label>
+        <select id="team1" name="team1Id" class="form-control">
+            @foreach (var team in Model)
+            {
+                <option value="@team.Id">@team.Name</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="team2">Select Team 2</label>
+        <select id="team2" name="team2Id" class="form-control">
+            @foreach (var team in Model)
+            {
+                <option value="@team.Id">@team.Name</option>
+            }
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Battle!</button>
+</form>
+
+

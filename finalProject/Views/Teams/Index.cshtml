@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Teams";
+}
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center">
+        <h1 class="display-5">Teams</h1>
+        <a href="/Teams/Create" class="btn btn-primary btn-lg">Create New Team</a>
+    </div>
+
+    <div class="mt-4">
+        @if (Model != null && Model.Count > 0)
+        {
+            <div class="list-group">
+                @foreach (var team in Model)
+                {
+                    <a href="/Teams/Details/@team.Id" class="list-group-item list-group-item-action">
+                        <h5 class="mb-1">@team.Name</h5>
+                        <small>@team.Characters.Count characters</small>
+                    </a>
+                }
+            </div>
+        }
+        else
+        {
+            <p class="text-muted">No teams found. Create a new team to get started!</p>
+        }
+    </div>
+</div>
+
+
