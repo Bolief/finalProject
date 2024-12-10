@@ -1,0 +1,52 @@
+﻿@model Team
+@{
+    ViewData["Title"] = "Create Team";
+}
+
+<div class="container mt-5">
+    <h1 class="display-5">Create a New Team</h1>
+
+    <div class="mt-4">
+        <form asp-action="Create" method="post" class="needs-validation">
+                
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="TotalWins" />
+
+            <div class="mb-3">
+                <label asp-for="Name" class="form-label">Team Name</label>
+                <input asp-for="Name" type="text" id="Name" name="Name" class="form-control" required />
+                <div class="invalid-feedback">
+                    Please provide a team name.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Description" class="form-label">Description</label>
+                <input asp-for="Description" id="Description" name="Description" class="form-control" rows="3"></input>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="UserId">User</label>
+                <select asp-for="UserId" class="form-control">
+                    @foreach (User user in ViewBag.Users)
+                    {
+                        <option value="@user.UserId">@user.Username</option>
+                    }
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Characters">Characters</label>
+                <select asp-for="Characters" class="form-control">
+                    @foreach (Character character in ViewBag.Characters)
+                    {
+                        <option value="@character.Id">@character.Name</option>
+                    }
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg">Create Team</button>
+            <a href="/Teams" class="btn btn-secondary btn-lg">Cancel</a>
+        </form>
+    </div>
+</div>

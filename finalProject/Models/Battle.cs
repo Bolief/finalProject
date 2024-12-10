@@ -7,7 +7,7 @@
         public Team Team1 { get; set; }
         public int Team2Id { get; set; }
         public Team Team2 { get; set; }
-        public int WinnerTeamId { get; set; }
+        public int? WinnerTeamId { get; set; }
         public Team Winner { get; set; }
         public DateTime BattleDate { get; set; }
     }

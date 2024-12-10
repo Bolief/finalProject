@@ -8,8 +8,9 @@ namespace finalProject.Models
         public string Name { get; set; }
         public int UserId { get; set; }
         public User User { get; set; }
+        public string Description { get; set; } = "A regular team";
         public List<Character> Characters { get; set; } = new();
-        public int TotalWins { get; set; }
+        public int TotalWins { get; set; } = 0;
     }
 
 

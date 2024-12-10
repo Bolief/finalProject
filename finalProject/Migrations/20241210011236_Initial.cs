@@ -107,7 +107,7 @@ namespace finalProject.Migrations
                         name: "FK_Characters_Teams_TeamId",
                         column: x => x.TeamId,
                         principalTable: "Teams",
-                        principalColumn: "Id",
+                        principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                 });
 

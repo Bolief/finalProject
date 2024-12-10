@@ -13,26 +13,35 @@
             _context = context;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var teams = await _context.Teams.Include(t => t.Characters).ToListAsync();
+            var teams = _context.Teams.Include(t => t.Characters).ToList();
             return View(teams);
         }
 
         public IActionResult Create()
         {
-            return View();
+            var users = _context.Users.Include(u => u.Teams).ToList();
+            var characters = _context.Characters.ToList();
+            ViewBag.Users = users;
+            ViewBag.Characters = characters;
+            return View(new Team());
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Team team)
+        public IActionResult Create(Team team)
         {
+            team.Characters.Add(new Character());
             if (ModelState.IsValid)
             {
                 _context.Teams.Add(team);
-                await _context.SaveChangesAsync();
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
+            var users = _context.Users.Include(u => u.Teams).ToList();
+            var characters = _context.Characters.ToList();
+            ViewBag.Users = users;
+            ViewBag.Characters = characters;
             return View(team);
         }
     }
