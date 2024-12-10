@@ -12,6 +12,7 @@ namespace finalProject.Models
         public DbSet<Move> Moves { get; set; }
         public DbSet<Badge> Badges { get; set; }
         public DbSet<Leaderboard> Leaderboards { get; set; }
+        public DbSet<Battle> Battles { get; set; }
 
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
