@@ -1,0 +1,43 @@
+﻿@model finalProject.Models.Character
+
+@{
+    ViewData["Title"] = "Add Character";
+}
+
+<h2>Add a Character to Madrid</h2>
+
+<form asp-action="AddCharacter">
+    <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Health" class="control-label"></label>
+        <input asp-for="Health" class="form-control" />
+        <span asp-validation-for="Health" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Strength" class="control-label"></label>
+        <input asp-for="Strength" class="form-control" />
+        <span asp-validation-for="Strength" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Defense" class="control-label"></label>
+        <input asp-for="Defense" class="form-control" />
+        <span asp-validation-for="Defense" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Speed" class="control-label"></label>
+        <input asp-for="Speed" class="form-control" />
+        <span asp-validation-for="Speed" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Save Character</button>
+        <a href="/Teams/Details/@ViewBag.TeamId" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

@@ -1,52 +1,49 @@
-﻿@model Team
+﻿@model finalProject.Models.Team
 @{
-    ViewData["Title"] = "Create Team";
+    ViewData["Title"] = "Team Details";
 }
 
 <div class="container mt-5">
-    <h1 class="display-5">Create a New Team</h1>
+    <h1 class="display-5">@Model.Name</h1>
+    <p class="text-muted">@Model.Description</p>
 
-    <div class="mt-4">
-        <form asp-action="Create" method="post" class="needs-validation">
+    <h3 class="mt-4">Team Members</h3>
+    @if (Model.Characters != null && Model.Characters.Any())
+    {
+        <ul class="list-group">
+            @foreach (var character in Model.Characters)
+            {
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span>@character.Name</span>
+                    <div>
+                        <a asp-controller="Characters" asp-action="EditCharacter" asp-route-id="@character.Id" class="btn btn-warning btn-sm">Edit</a>
+                        <a asp-controller="Characters" asp-action="DeleteCharacter" asp-route-id="@character.Id" class="btn btn-danger btn-sm">Delete</a>
+                        <a asp-controller="Characters" asp-action="ViewStats" asp-route-id="@character.Id" class="btn btn-info btn-sm">View Stats</a>
+                    </div>
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p class="text-muted">No characters found in this team.</p>
+    }
+    <a asp-controller="Characters" asp-action="AddCharacter" asp-route-teamId="@Model.Id" class="btn btn-primary mt-4">
+        Add Character
+    </a>
 
-            <input type="hidden" asp-for="Id" />
-            <input type="hidden" asp-for="TotalWins" />
+    <h3 class="mt-4">Coach</h3>
+    @if (Model.User != null)
+    {
+        <p>@Model.User.Username</p>
+    }
+    else
+    {
+        <p class="text-muted">No coach assigned to this team.</p>
+    }
 
-            <div class="mb-3">
-                <label asp-for="Name" class="form-label">Team Name</label>
-                <input asp-for="Name" type="text" id="Name" name="Name" class="form-control" required />
-                <div class="invalid-feedback">
-                    Please provide a team name.
-                </div>
-            </div>
+    <h3 class="mt-4">Total Wins</h3>
+    <p>@Model.TotalWins</p>
 
-            <div class="mb-3">
-                <label asp-for="Description" class="form-label">Description</label>
-                <input asp-for="Description" id="Description" name="Description" class="form-control" rows="3"></input>
-            </div>
-
-            <div class="mb-3">
-                <label asp-for="UserId">User</label>
-                <select asp-for="UserId" class="form-control">
-                    @foreach (User user in ViewBag.Users)
-                    {
-                        <option value="@user.UserId">@user.Username</option>
-                    }
-                </select>
-            </div>
-
-            <div class="mb-3">
-                <label asp-for="Characters">Characters</label>
-                <select asp-for="Characters" class="form-control">
-                    @foreach (Character character in ViewBag.Characters)
-                    {
-                        <option value="@character.Id">@character.Name</option>
-                    }
-                </select>
-            </div>
-
-            <button type="submit" class="btn btn-primary btn-lg">Add Character</button>
-            <a href="/Teams" class="btn btn-secondary btn-lg">Cancel</a>
-        </form>
-    </div>
+    <a href="/Teams" class="btn btn-secondary mt-4">Back to Teams</a>
 </div>

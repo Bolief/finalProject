@@ -12,5 +12,4 @@ namespace finalProject.Models
         public List<Character> Characters { get; set; } = new();
         public int TotalWins { get; set; } = 0;
     }
-
 }

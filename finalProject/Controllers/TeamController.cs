@@ -44,6 +44,21 @@
             ViewBag.Characters = characters;
             return View(team);
         }
+
+        public IActionResult Details(int id)
+        {
+            var team = _context.Teams
+                .Include(t => t.Characters)
+                .Include(t => t.User)
+                .FirstOrDefault(t => t.Id == id);
+
+            if (team == null)
+            {
+                return NotFound();
+            }
+
+            return View(team);
+        }
     }
 
 }
