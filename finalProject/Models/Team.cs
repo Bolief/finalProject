@@ -13,5 +13,4 @@ namespace finalProject.Models
         public int TotalWins { get; set; } = 0;
     }
 
-
 }

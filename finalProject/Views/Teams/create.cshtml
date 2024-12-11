@@ -35,15 +35,15 @@
                 </select>
             </div>
 
-            <div class="mb-3">
-                <label asp-for="Characters">Characters</label>
-                <select asp-for="Characters" class="form-control">
-                    @foreach (Character character in ViewBag.Characters)
-                    {
-                        <option value="@character.Id">@character.Name</option>
-                    }
-                </select>
-            </div>
+           @*   <div class="mb-3">
+                 <label asp-for="Characters">Characters</label>
+                 <select asp-for="Characters" class="form-control">
+                     @foreach (Character character in ViewBag.Characters)
+                     {
+                         <option value="@character.Id">@character.Name</option>
+                     }
+                 </select>
+             </div> *@
 
             <button type="submit" class="btn btn-primary btn-lg">Create Team</button>
             <a href="/Teams" class="btn btn-secondary btn-lg">Cancel</a>
