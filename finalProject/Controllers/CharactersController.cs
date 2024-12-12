@@ -30,12 +30,11 @@ namespace finalProject.Controllers
         }
 
         // Saves a new character to a specific team
+        //[HttpPost]
         [HttpPost]
-        public IActionResult SaveCharacter(int TeamId, string Name, int Health, int Strength, int Speed)
+        public IActionResult SaveCharacter(int TeamId, string Name, int Health, int Strength, int Defense, int Speed)
         {
-            var team = _context.Teams
-                .Include(t => t.Characters)
-                .FirstOrDefault(t => t.Id == TeamId);
+            var team = _context.Teams.Include(t => t.Characters).FirstOrDefault(t => t.Id == TeamId);
 
             if (team == null)
             {
@@ -47,7 +46,8 @@ namespace finalProject.Controllers
                 Name = Name,
                 Health = Health,
                 Strength = Strength,
-                Speed = Speed,
+                Defense = Defense,
+                Speed = Speed
             };
 
             team.Characters.Add(character);

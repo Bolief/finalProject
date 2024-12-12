@@ -1,0 +1,16 @@
+﻿@model Character
+
+@{
+    ViewData["Title"] = "Delete Character Confirmation";
+}
+
+<div class="container mt-5">
+    <h1 class="text-danger">Confirm Delete</h1>
+    <p>Are you sure you want to delete the character <strong>@Model.Name</strong>?</p>
+
+    <form asp-action="ConfirmDeleteCharacter" asp-controller="Characters" method="post">
+        <input type="hidden" name="id" value="@Model.Id" />
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a asp-action="Details" asp-controller="Teams" asp-route-id="@Model.TeamId" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

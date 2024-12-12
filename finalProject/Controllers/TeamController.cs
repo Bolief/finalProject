@@ -31,19 +31,20 @@
         [HttpPost]
         public IActionResult Create(Team team)
         {
-            team.Characters.Add(new Character());
             if (ModelState.IsValid)
             {
-                _context.Teams.Add(team);
-                _context.SaveChanges();
-                return RedirectToAction(nameof(Index));
+                _context.Teams.Add(team); // Add the team to the database context
+                _context.SaveChanges();   // Save changes to the database
+                return RedirectToAction(nameof(Index)); // Redirect back to the Index view
             }
+
             var users = _context.Users.Include(u => u.Teams).ToList();
             var characters = _context.Characters.ToList();
             ViewBag.Users = users;
             ViewBag.Characters = characters;
             return View(team);
         }
+
 
         public IActionResult Details(int id)
         {

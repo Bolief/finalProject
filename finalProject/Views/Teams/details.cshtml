@@ -17,7 +17,7 @@
                     <span>@character.Name</span>
                     <div>
                         <a asp-controller="Characters" asp-action="EditCharacter" asp-route-id="@character.Id" class="btn btn-warning btn-sm">Edit</a>
-                        <a asp-controller="Characters" asp-action="DeleteCharacter" asp-route-id="@character.Id" class="btn btn-danger btn-sm">Delete</a>
+                        <a asp-controller="Characters" asp-action="DeleteCharacterConfirmation" asp-route-id="@character.Id" class="btn btn-danger btn-sm">Delete</a>
                         <a asp-controller="Characters" asp-action="ViewStats" asp-route-id="@character.Id" class="btn btn-info btn-sm">View Stats</a>
                     </div>
                 </li>

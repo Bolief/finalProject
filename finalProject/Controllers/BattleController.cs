@@ -30,7 +30,7 @@ namespace finalProject.Controllers
                 return RedirectToAction("Index");
             }
 
-            // Simple battle logic (you can enhance this)
+            // battle logic 
             var winner = (team1.TotalWins > team2.TotalWins) ? team1 : team2;
 
             // Save battle to database

@@ -1,0 +1,14 @@
+﻿@model finalProject.Models.Battle
+
+@{
+    ViewData["Title"] = "Battle Result";
+}
+
+<h1>Battle Result</h1>
+
+<p><strong>Team 1:</strong> @Model.Team1.Name</p>
+<p><strong>Team 2:</strong> @Model.Team2.Name</p>
+<p><strong>Winner:</strong> @Model.Winner.Name</p>
+<p><strong>Date:</strong> @Model.BattleDate.ToString("MMMM dd, yyyy hh:mm tt")</p>
+
+<a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Back to Homepage</a>
