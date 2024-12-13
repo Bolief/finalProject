@@ -14,7 +14,7 @@ public class UserController : Controller
 
     public IActionResult Login()
     {
-        return View();
+        return View("~/Areas/User/Views/Users/Login.cshtml");
     }
 
     [HttpPost]
