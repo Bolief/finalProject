@@ -16,6 +16,8 @@
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     <span>@character.Name</span>
                     <div>
+                        <a asp-controller="Characters" asp-action="EditCharacter" asp-route-id="@character.Id" class="btn btn-warning btn-sm">Edit</a>
+                        <a asp-controller="Characters" asp-action="DeleteCharacterConfirmation" asp-route-id="@character.Id" class="btn btn-danger btn-sm">Delete</a>
                         <a asp-controller="Characters" asp-action="ViewStats" asp-route-id="@character.Id" class="btn btn-info btn-sm">View Stats</a>
                     </div>
                 </li>
@@ -26,6 +28,9 @@
     {
         <p class="text-muted">No characters found in this team.</p>
     }
+    <a asp-area="User" asp-controller="Characters" asp-action="AddCharacter" asp-route-teamId="@Model.Id" class="btn btn-primary mt-4">
+        Add Character
+    </a>
 
     <h3 class="mt-4">Coach</h3>
     @if (Model.User != null)

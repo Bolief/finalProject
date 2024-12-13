@@ -1,0 +1,36 @@
+﻿@using finalProject.Models
+@model Character
+
+@{
+    ViewData["Title"] = "Edit Character";
+}
+
+<div class="container mt-5">
+    <h1>Edit Character: @Model.Name</h1>
+
+    <form asp-action="EditCharacter" asp-controller="Characters" asp-area="User" method="post">
+        <input type="hidden" name="Id" value="@Model.Id" />
+        <div class="form-group">
+            <label for="Name">Name</label>
+            <input type="text" id="Name" name="Name" class="form-control" value="@Model.Name" required />
+        </div>
+        <div class="form-group">
+            <label for="Strength">Strength</label>
+            <input type="number" id="Strength" name="Strength" class="form-control" value="@Model.Strength" required />
+        </div>
+        <div class="form-group">
+            <label for="Defense">Defense</label>
+            <input type="number" id="Defense" name="Defense" class="form-control" value="@Model.Defense" required />
+        </div>
+        <div class="form-group">
+            <label for="Speed">Speed</label>
+            <input type="number" id="Speed" name="Speed" class="form-control" value="@Model.Speed" required />
+        </div>
+        <div class="form-group">
+            <label for="Health">Health</label>
+            <input type="number" id="Health" name="Health" class="form-control" value="@Model.Health" required />
+        </div>
+        <button type="submit" class="btn btn-primary mt-4">Save</button>
+        <a asp-action="Details" asp-controller="Teams" asp-area="User" asp-route-id="@Model.TeamId" class="btn btn-secondary mt-4">Cancel</a>
+    </form>
+</div>

@@ -11,5 +11,4 @@ namespace finalProject.Models
         public List<Badge> Badges { get; set; } = new();
     }
 
-
 }

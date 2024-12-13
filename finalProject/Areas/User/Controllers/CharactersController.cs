@@ -2,8 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace finalProject.Controllers
+namespace finalProject.Areas.User.Controllers
 {
+    [Area("User")]
     public class CharactersController : Controller
     {
         private readonly AppDbContext _context;
@@ -30,11 +31,10 @@ namespace finalProject.Controllers
         }
 
         // Saves a new character to a specific team
-        //[HttpPost]
         [HttpPost]
-        public IActionResult SaveCharacter(int TeamId, string Name, int Health, int Strength, int Defense, int Speed)
+        public IActionResult SaveCharacter(int teamId, string name, int health, int strength, int defense, int speed)
         {
-            var team = _context.Teams.Include(t => t.Characters).FirstOrDefault(t => t.Id == TeamId);
+            var team = _context.Teams.Include(t => t.Characters).FirstOrDefault(t => t.Id == teamId);
 
             if (team == null)
             {
@@ -43,17 +43,17 @@ namespace finalProject.Controllers
 
             var character = new Character
             {
-                Name = Name,
-                Health = Health,
-                Strength = Strength,
-                Defense = Defense,
-                Speed = Speed
+                Name = name,
+                Health = health,
+                Strength = strength,
+                Defense = defense,
+                Speed = speed
             };
 
             team.Characters.Add(character);
             _context.SaveChanges();
 
-            return RedirectToAction("Details", "Teams", new { id = TeamId });
+            return RedirectToAction("Details", "Teams", new { area = "User", id = teamId });
         }
 
         // Displays the customize page for a team's characters
@@ -82,7 +82,7 @@ namespace finalProject.Controllers
             if (team == null)
             {
                 TempData["ErrorMessage"] = "Team not found.";
-                return RedirectToAction("Index", "Teams");
+                return RedirectToAction("Index", "Teams", new { area = "User" });
             }
 
             foreach (var updatedCharacter in updatedCharacters)
@@ -99,13 +99,13 @@ namespace finalProject.Controllers
                 else
                 {
                     TempData["ErrorMessage"] = $"Invalid stats for character {updatedCharacter.Name}.";
-                    return RedirectToAction("Customize", new { teamId = teamId });
+                    return RedirectToAction("Customize", new { area = "User", teamId = teamId });
                 }
             }
 
             _context.SaveChanges();
             TempData["SuccessMessage"] = "Character stats updated successfully!";
-            return RedirectToAction("Index", "Teams");
+            return RedirectToAction("Index", "Teams", new { area = "User" });
         }
 
         // Delete Confirmation Page
@@ -135,7 +135,7 @@ namespace finalProject.Controllers
             _context.SaveChanges();
 
             TempData["SuccessMessage"] = $"Character '{character.Name}' was deleted successfully.";
-            return RedirectToAction("Details", "Teams", new { id = character.TeamId });
+            return RedirectToAction("Details", "Teams", new { area = "User", id = character.TeamId });
         }
 
         // Edit Character Page
@@ -172,12 +172,11 @@ namespace finalProject.Controllers
                 _context.SaveChanges();
 
                 TempData["SuccessMessage"] = $"Character '{updatedCharacter.Name}' was updated successfully.";
-                return RedirectToAction("Details", "Teams", new { id = existingCharacter.TeamId });
+                return RedirectToAction("Details", "Teams", new { area = "User", id = existingCharacter.TeamId });
             }
 
             TempData["ErrorMessage"] = "Invalid character stats. Please ensure all stats are within valid limits.";
             return View(updatedCharacter);
         }
-
     }
 }

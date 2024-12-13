@@ -10,13 +10,13 @@
 
     <div class="row text-center mt-4">
         <div class="col-md-3">
-            <a asp-controller="Teams" asp-action="Index" class="btn btn-primary btn-lg w-100">View Teams</a>
+            <a asp-area="User" asp-controller="Team" asp-action="Index" class="btn btn-primary btn-lg w-100">View Teams</a>
         </div>
         <div class="col-md-3">
-            <a asp-controller="Battle" asp-action="Index" class="btn btn-danger btn-lg w-100">Battle</a>
+            <a asp-area="User" asp-controller="Battle" asp-action="Index" class="btn btn-danger btn-lg w-100">Battle</a>
         </div>
         <div class="col-md-3">
-            <a asp-controller="Leaderboard" asp-action="Index" class="btn btn-success btn-lg w-100">Leaderboard</a>
+            <a asp-area="User" asp-controller="Leaderboard" asp-action="Index" class="btn btn-warning btn-lg w-100">Leaderboard</a>
         </div>
     </div>
 </div>

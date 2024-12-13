@@ -5,7 +5,7 @@
 <div class="container mt-5">
     <div class="d-flex justify-content-between align-items-center">
         <h1 class="display-5">Teams</h1>
-
+        <a asp-area="User" asp-controller="Team" asp-action="Create" class="btn btn-primary btn-lg">Create New Team</a>
     </div>
 
     <div class="mt-4">
@@ -14,7 +14,7 @@
             <div class="list-group">
                 @foreach (var team in Model)
                 {
-                    <a href="/Teams/Details/@team.Id" class="list-group-item list-group-item-action">
+                    <a asp-area="User" asp-controller="Team" asp-action="Details" asp-route-id="@team.Id" class="list-group-item list-group-item-action">
                         <h5 class="mb-1">@team.Name</h5>
                         <small>@team.Characters.Count characters</small>
                     </a>
@@ -23,7 +23,7 @@
         }
         else
         {
-            <p class="text-muted">No teams found. Log in to create a new team!</p>
+            <p class="text-muted">No team found. Create a new team to get started!</p>
         }
     </div>
 </div>

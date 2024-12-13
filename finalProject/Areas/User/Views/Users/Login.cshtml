@@ -1,0 +1,23 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model finalProject.Models.User
+
+<h1>Login</h1>
+<form asp-controller="User" asp-action="Login" method="post">
+    <!-- General error summary -->
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <!-- Username field -->
+    <div class="form-group">
+        <label for="Username">Username</label>
+        <input type="text" class="form-control" id="Username" name="Username" required />
+        <span asp-validation-for="Username" class="text-danger"></span>
+    </div>
+
+    <!-- Submit button -->
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>
